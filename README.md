@@ -9,6 +9,16 @@ When the credentials are given, it saves a .xlsx file, that contains the followi
 - Birthday
 - If he/she is currently working somewhere
 
+## Instalation
+
+You can install the required modules using the following command
+
+```bash
+pip install -r requirements.txt
+```
+
+You also need to install the WebDriver
+
 ## Disclaimer
 
 I built this project, only to strength my skills on web scraping and find out more on this field. It is not recommended to use it by all means. 
