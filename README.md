@@ -19,6 +19,8 @@ pip install -r requirements.txt
 
 You also need to install the WebDriver
 
+- For Google Chrome you can find the WebDriver in: https://chromedriver.chromium.org/downloads
+
 ## Disclaimer
 
 I built this project, only to strength my skills on web scraping and find out more on this field. It is not recommended to use it by all means. 
