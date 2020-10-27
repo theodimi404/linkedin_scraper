@@ -20,6 +20,7 @@ pip install -r requirements.txt
 You also need to install the WebDriver
 
 - For Google Chrome you can find the WebDriver in: https://chromedriver.chromium.org/downloads
+Copy and Paste the folder that contains the webdriver inside the PATH, e.g. you can paste it in the directory where python is installed.
 
 ## Disclaimer
 
