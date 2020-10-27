@@ -86,22 +86,19 @@ sheet = book.active
 row = 1
 
 for url in tqdm(url_profiles[4:]):
-    time.sleep(5)
-
     driver.get(url)
     time.sleep(1)
-    driver.find_element_by_xpath('//body').send_keys(Keys.SPACE)
+    driver.find_element_by_xpath('//body').send_keys(Keys.SPACE + Keys.SPACE)
     time.sleep(10)
     profile = driver.page_source
 
     time.sleep(3)
 
     profile_info = BeautifulSoup(profile, "html.parser")
-    # print(profile_info)
 
     # Check if the connection is currently working
     experience = profile_info.find('div', {'id': 'oc-background-section'})
-    for i in range(3):
+    for i in range(2):
         if not experience:
             driver.find_element_by_xpath('//body').send_keys(Keys.SPACE)
             time.sleep(10)
@@ -110,7 +107,6 @@ for url in tqdm(url_profiles[4:]):
             profile_info = BeautifulSoup(profile, "html.parser")
             experience = profile_info.find('div', {'id': 'oc-background-section'})
     try:
-        # print(experience)
         last_experience = experience.find('li', {
             'class': 'pv-entity__position-group-pager pv-profile-section__list-item ember-view'})
         last_experience_dates = last_experience.find(
@@ -151,7 +147,6 @@ for url in tqdm(url_profiles[4:]):
         profile_info = [profile_header.text, profile_span['href']]
 
         sheet.cell(row=row, column=1).value = profile_span['href']
-        # print(profile_info)
     if email:
         email_header = email.find('header', {'class': 'pv-contact-info__header t-16 t-black t-bold'})
         email_span = email.find('a', {'class': 'pv-contact-info__contact-link link-without-visited-state t-14'})
@@ -159,7 +154,6 @@ for url in tqdm(url_profiles[4:]):
         email = [email_header.text, email_span.text]
 
         sheet.cell(row=row, column=2).value = email_span.text
-        # print(email)
     if connected:
         connected_header = connected.find('header', {'class': 'pv-contact-info__header t-16 t-black t-bold'})
         connected_span = connected.find('span', {'class': 'pv-contact-info__contact-item t-14 t-black t-normal'})
@@ -167,7 +161,6 @@ for url in tqdm(url_profiles[4:]):
         connected_info = [connected_header.text, connected_span.text]
 
         sheet.cell(row=row, column=3).value = connected_span.text
-        # print(connected_info)
     if birthday_info:
         birthday_info_header = birthday_info.find('header', {'class': 'pv-contact-info__header t-16 t-black t-bold'})
         birthday_info_span = birthday_info.find('span',
@@ -176,9 +169,7 @@ for url in tqdm(url_profiles[4:]):
         birthdays = [birthday_info_header.text, birthday_info_span.text]
 
         sheet.cell(row=row, column=4).value = birthday_info_span.text
-        # print(birthdays)
     if unemployed == 'True':
-        # print(unemployed)
         sheet.cell(row=row, column=5).value = 'unemployed'
     elif unemployed == 'False':
         sheet.cell(row=row, column=5).value = 'employed'
